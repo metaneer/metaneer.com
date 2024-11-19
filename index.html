@@ -29,73 +29,117 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Allerta+Stencil&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: 'Roboto', sans-serif;
             font-weight: 300;
             font-size: 1.2em;
-            margin: 0;
-            padding: 0;
+            line-height: 1.6;
             background-color: #f5f5f5;
             color: #404041;
         }
-        header {
-            background-color: #f5f5f5;
-            padding: 20px;
-            text-align: center;
-        }
-        header img {
-            width: 800px;
-        }
+
         main {
-            padding: 30px;
-            max-width: 740px;
+            padding: 5%;
+            max-width: 1000px;
+            width: 90%;
             margin: 0 auto 50px;
             background-color: #fff;
             box-shadow: 0 0px 12px rgba(0, 0, 0, 0.25);
         }
-        main img {
-            width: 740px;
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 2em auto;
         }
+
         h1, h2 {
             font-family: 'Roboto', sans-serif;
             color: #404041;
+            margin: 1.5em 0 0.5em;
         }
+
         h1 {
-            font-size: 2em;
+            font-size: clamp(1.5em, 5vw, 2em);
             font-weight: 900;
         }
+
         h2 {
-            font-size: 1.5em;
+            font-size: clamp(1.2em, 4vw, 1.5em);
             font-weight: 700;
-            margin-top: 0.5em;
-            margin-bottom: 5px;
         }
+
         p {
-            line-height: 1.5;
-            margin-top: 0.5em;
             margin-bottom: 1.5em;
         }
+
         ul {
-            line-height: 1.5;
-            margin: 1.5em 0;
             padding-left: 1.5em;
+            margin-bottom: 1.5em;
         }
+
         li {
             margin-bottom: 0.75em;
+        }
+
+        .client-image-caption {
+            text-align: center;
+            font-size: 0.8em;
+            margin-top: -1em;
+            margin-bottom: 2em;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 1em;
+            }
+
+            main {
+                padding: 1.5rem;
+                width: 95%;
+            }
+
+            ul {
+                padding-left: 1.2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                font-size: 0.9em;
+            }
+
+            main {
+                padding: 1rem;
+                width: 100%;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            img {
+                margin: 1.5em auto;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        
-    </header>
+    <header></header>
     <main>
         <img src="/img/MetaNeer.png" alt="MetaNeer Labs Logo">
         <h2>What I Do</h2>
-        <p>I've spent the last 14 years shipping software for start-ups and innovation groups within larger companies. My speciality is zero to one - rapidly translating innovative ideas into fully functional mobile and web applications. I provide end-to-end development services, from initial concept to launched product. My approach is structured and efficient, ensuring that each project is precisely defined, meticulously planned, and expertly executed. Since 2010, I've worked with countless technologies & platforms and delivered dozens of projects to market on time and on budget.</p>
+        <p>I've spent the last 14 years shipping software for start-ups and innovation groups within larger companies. My specialty is zero to one - rapidly translating innovative ideas into fully functional mobile and web applications. I provide end-to-end development services, from initial concept to launched product. My approach is structured and efficient, ensuring that each project is precisely defined, meticulously planned, and expertly executed. Since 2010, I've worked with countless technologies & platforms and delivered dozens of projects to market on time and on budget.</p>
         <p>When you work with MetaNeer Labs, you're working directly with me, Andrew Bellay. This personal approach ensures that your project gets the attention and expertise it deserves. And due to the requirements of this hands-on approach, <b>I only work with two clients at a time.</b></p>
-        <img src="/img/MetaNeer-Clients.jpeg" alt="Past Clients" title="Past Clients" style="width: 740px !important;">
-        <div style="text-align: center; font-size: 0.8em;">(some of my past clients & products)</div>
+        <p>Email me (<a id="eaddress" href="#"></a>) to see if we're a good fit.</p>
+        <img src="/img/MetaNeer-Clients.jpeg" alt="Past Clients" title="Past Clients">
+        <div class="client-image-caption">(some of my past clients & products)</div>
         <h2>What I Don't Do</h2>
         <p>While I offer a comprehensive suite of development services, there are certain areas I don't cover:</p>
         <ul>
@@ -140,7 +184,7 @@
             var d = 'metaneer';
             var elink = document.getElementById('eaddress');
             elink.innerHTML = n + '@' + d + tld;
-            elink.href = 'mailto:' + n + '@' + d + tld + '&subject=Howdy' + '&body=Hi%20there,';
+            elink.href = 'mailto:' + n + '@' + d + tld + '?subject=Howdy' + '&body=Hi%20there,%20Can%20you%20chat?';
         });
     </script>
 </body>
