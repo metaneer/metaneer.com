@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Launch a working MVP in 28 days — guaranteed | Metaneer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Funded solo founders ($35k+): Ship a revenue-ready MVP in 28 days. Delivery + Activation guarantees. 3 slots/month. Book a 15-min triage." />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="28-Day MVP Sprint — Guaranteed" />
+  <meta property="og:description" content="Launch next month. Fixed scope. Fixed timeline. Limited slots." />
+  <meta property="og:url" content="https://metaneer.com/mvp-sprint.html" />
+  <meta property="og:image" content="https://metaneer.com/og-image.jpg" />
+
+  <style>/* (same minimal CSS as before; omitted for brevity) */</style>
+
+  <!-- LinkedIn Insight Tag -->
+  <script>
+    const LINKEDIN_PARTNER_ID = 8233308; // your partner id
+    const LI_CONVERSION_ID_BOOK_SUCCESS = YOUR_CONVERSION_ID; // <-- paste integer here (no quotes)
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(LINKEDIN_PARTNER_ID);
+  </script>
+  <script>
+    (function(l){
+      if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])}; window.lintrk.q=[]}
+      var s=document.createElement("script"); s.type="text/javascript"; s.async=true;
+      s.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";
+      var f=document.getElementsByTagName("script")[0]; f.parentNode.insertBefore(s,f);
+    })(window.lintrk);
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://px.ads.linkedin.com/collect/?pid=8233308&fmt=gif" /></noscript>
+</head>
+<body>
+  <!-- … your hero, proof, sections, etc. exactly as provided earlier … -->
+
+  <!-- Scheduler Modal (gate + embed) -->
+  <div class="modal" id="scheduler-modal" aria-hidden="true" role="dialog" aria-labelledby="sched-title" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-head">
+        <strong id="sched-title">15-min Triage</strong>
+        <button class="btn" id="close-modal" aria-label="Close">Close</button>
+      </div>
+      <div class="modal-body">
+        <form id="gate" novalidate>
+          <!-- name/email + required checkboxes here -->
+          <button type="submit" id="open-scheduler" class="btn primary" disabled>Open scheduler</button>
+          <p class="sub">Availability: same day / next day / third day only (72-hour window)</p>
+          <p class="sub">Confirmation text: You’re booked. Check email for Zoom. Next: bring your one-liner and core flow.</p>
+        </form>
+
+        <div id="scheduler-wrap" class="hidden">
+          <iframe id="scheduler-iframe" class="scheduler-frame" title="Zoom Scheduler"
+                  src="https://scheduler.zoom.us/andrew-bellay/15-min-triage"
+                  referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe>
+          <p class="sub">This is configured to redirect to <code>https://metaneer.com/mvp-sprint-thank-you.html</code> on success.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function liTrack(evtName, payload) {
+      try {
+        if (window.lintrk) window.lintrk('track', payload);
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: evtName, ...payload });
+      } catch (e) {}
+    }
+
+    // CTAs → open modal + track
+    const modal = document.getElementById('scheduler-modal');
+    const openButtons = [document.getElementById('cta-book'), document.getElementById('cta-book-2')].filter(Boolean);
+    openButtons.forEach(btn => btn.addEventListener('click', () => {
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      liTrack('open_scheduler', { conversion_id: undefined, label: 'scheduler_modal_open' });
+      liTrack('click_book', { conversion_id: undefined, label: 'cta_click' });
+    }));
+    document.getElementById('close-modal')?.addEventListener('click', () => {
+      modal.setAttribute('aria-hidden', 'true'); document.body.style.overflow = '';
+    });
+
+    // Gate → reveal scheduler
+    const gate = document.getElementById('gate');
+    const nameI = document.getElementById('name');
+    const emailI = document.getElementById('email');
+    const chk1 = document.getElementById('chk1');
+    const chk2 = document.getElementById('chk2');
+    const openSchedBtn = document.getElementById('open-scheduler');
+    const schedWrap = document.getElementById('scheduler-wrap');
+    const schedIframe = document.getElementById('scheduler-iframe');
+
+    function validateGate() {
+      const ok = nameI?.value.trim() && emailI?.validity.valid && chk1?.checked && chk2?.checked;
+      if (openSchedBtn) openSchedBtn.disabled = !ok;
+    }
+    [nameI, emailI, chk1, chk2].forEach(el => el && el.addEventListener('input', validateGate));
+    gate?.addEventListener('submit', (e) => {
+      e.preventDefault(); gate.classList.add('hidden'); schedWrap.classList.remove('hidden');
+    });
+
+    // Optional: attempt in-iframe success detect (final firing is on thank-you page)
+    const THANK_YOU_URL = "https://metaneer.com/mvp-sprint-thank-you.html";
+    schedIframe?.addEventListener('load', () => {
+      try {
+        const href = schedIframe.contentWindow.location.href;
+        if (href && href.indexOf(THANK_YOU_URL) === 0 && Number.isFinite(LI_CONVERSION_ID_BOOK_SUCCESS)) {
+          liTrack('book_success', { conversion_id: LI_CONVERSION_ID_BOOK_SUCCESS });
+        }
+      } catch (e) {}
+    });
+  </script>
+</body>
+</html>

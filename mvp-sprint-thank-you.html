@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Booked — Metaneer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- LinkedIn Insight Tag -->
+  <script>
+    const LINKEDIN_PARTNER_ID = 8233308;
+    const LI_CONVERSION_ID_BOOK_SUCCESS = YOUR_CONVERSION_ID; // <-- paste integer
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(LINKEDIN_PARTNER_ID);
+  </script>
+  <script>
+    (function(l){
+      if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])}; window.lintrk.q=[]}
+      var s=document.createElement("script"); s.type="text/javascript"; s.async=true;
+      s.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";
+      var f=document.getElementsByTagName("script")[0]; f.parentNode.insertBefore(s,f);
+    })(window.lintrk);
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://px.ads.linkedin.com/collect/?pid=8233308&fmt=gif" /></noscript>
+
+  <style>
+    body { margin:0; padding:0; display:grid; place-items:center; height:100svh; background:#0b0c10; color:#f7f7f7; font:16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif }
+    .card { max-width:680px; padding:24px; background:#121318; border:1px solid #22252c; border-radius:14px; text-align:center }
+    a { color:#6cf }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>You’re booked 🎉</h1>
+    <p>Check your email for the Zoom invite. Next: bring your one-liner and core flow.</p>
+    <p><a href="https://metaneer.com/mvp-sprint.html">Back to site</a></p>
+  </div>
+
+  <script>
+    window.addEventListener('load', function(){
+      try {
+        if (window.lintrk && Number.isFinite(LI_CONVERSION_ID_BOOK_SUCCESS)) {
+          window.lintrk('track', { conversion_id: LI_CONVERSION_ID_BOOK_SUCCESS });
+        } else if (window.lintrk) {
+          window.lintrk('track', { conversion_id: undefined });
+        }
+      } catch (e) {}
+    });
+  </script>
+</body>
+</html>
